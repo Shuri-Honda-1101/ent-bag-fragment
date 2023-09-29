@@ -6,7 +6,6 @@ package resolver
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent"
 	"github.com/Shuri-Honda-1101/ent-bug-fragment/gql"
@@ -14,37 +13,27 @@ import (
 
 // Node is the resolver for the node field.
 func (r *queryResolver) Node(ctx context.Context, id int) (ent.Noder, error) {
-	node, err := r.client.Noder(ctx, id)
-
-	if err != nil {
-		return nil, err
-	}
-	return node, nil
+	return r.client.Noder(ctx, id)
 }
 
 // Nodes is the resolver for the nodes field.
 func (r *queryResolver) Nodes(ctx context.Context, ids []int) ([]ent.Noder, error) {
-	nodes, err := r.client.Noders(ctx, ids)
-
-	if err != nil {
-		return nil, err
-	}
-	return nodes, nil
+	return r.client.Noders(ctx, ids)
 }
 
 // Projects is the resolver for the projects field.
 func (r *queryResolver) Projects(ctx context.Context) ([]*ent.Project, error) {
-	panic(fmt.Errorf("not implemented: Projects - projects"))
+	return r.client.Project.Query().All(ctx)
 }
 
 // Tasks is the resolver for the tasks field.
 func (r *queryResolver) Tasks(ctx context.Context) ([]*ent.Task, error) {
-	panic(fmt.Errorf("not implemented: Tasks - tasks"))
+	return r.client.Task.Query().All(ctx)
 }
 
 // Users is the resolver for the users field.
 func (r *queryResolver) Users(ctx context.Context) ([]*ent.User, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
+	return r.client.User.Query().All(ctx)
 }
 
 // Query returns gql.QueryResolver implementation.
