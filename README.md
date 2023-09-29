@@ -5,6 +5,7 @@ Repository for checking fragment bugs in ent
 ### start
 
 ```sh
+docker-compose up -d
 go run main.go
 ```
 
