@@ -3,7 +3,7 @@
 package ent
 
 import (
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/task"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/task"
 )
 
 // CreateProjectInput represents a mutation input for creating projects.
@@ -26,6 +26,54 @@ func (i *CreateProjectInput) Mutate(m *ProjectMutation) {
 
 // SetInput applies the change-set in the CreateProjectInput on the ProjectCreate builder.
 func (c *ProjectCreate) SetInput(i CreateProjectInput) *ProjectCreate {
+	i.Mutate(c.Mutation())
+	return c
+}
+
+// UpdateProjectInput represents a mutation input for updating projects.
+type UpdateProjectInput struct {
+	Name          *string
+	ClearUsers    bool
+	AddUserIDs    []int
+	RemoveUserIDs []int
+	ClearTasks    bool
+	AddTaskIDs    []int
+	RemoveTaskIDs []int
+}
+
+// Mutate applies the UpdateProjectInput on the ProjectMutation builder.
+func (i *UpdateProjectInput) Mutate(m *ProjectMutation) {
+	if v := i.Name; v != nil {
+		m.SetName(*v)
+	}
+	if i.ClearUsers {
+		m.ClearUsers()
+	}
+	if v := i.AddUserIDs; len(v) > 0 {
+		m.AddUserIDs(v...)
+	}
+	if v := i.RemoveUserIDs; len(v) > 0 {
+		m.RemoveUserIDs(v...)
+	}
+	if i.ClearTasks {
+		m.ClearTasks()
+	}
+	if v := i.AddTaskIDs; len(v) > 0 {
+		m.AddTaskIDs(v...)
+	}
+	if v := i.RemoveTaskIDs; len(v) > 0 {
+		m.RemoveTaskIDs(v...)
+	}
+}
+
+// SetInput applies the change-set in the UpdateProjectInput on the ProjectUpdate builder.
+func (c *ProjectUpdate) SetInput(i UpdateProjectInput) *ProjectUpdate {
+	i.Mutate(c.Mutation())
+	return c
+}
+
+// SetInput applies the change-set in the UpdateProjectInput on the ProjectUpdateOne builder.
+func (c *ProjectUpdateOne) SetInput(i UpdateProjectInput) *ProjectUpdateOne {
 	i.Mutate(c.Mutation())
 	return c
 }
@@ -54,6 +102,46 @@ func (c *TaskCreate) SetInput(i CreateTaskInput) *TaskCreate {
 	return c
 }
 
+// UpdateTaskInput represents a mutation input for updating tasks.
+type UpdateTaskInput struct {
+	Name         *string
+	Description  *string
+	Status       *task.Status
+	ClearProject bool
+	ProjectID    *int
+}
+
+// Mutate applies the UpdateTaskInput on the TaskMutation builder.
+func (i *UpdateTaskInput) Mutate(m *TaskMutation) {
+	if v := i.Name; v != nil {
+		m.SetName(*v)
+	}
+	if v := i.Description; v != nil {
+		m.SetDescription(*v)
+	}
+	if v := i.Status; v != nil {
+		m.SetStatus(*v)
+	}
+	if i.ClearProject {
+		m.ClearProject()
+	}
+	if v := i.ProjectID; v != nil {
+		m.SetProjectID(*v)
+	}
+}
+
+// SetInput applies the change-set in the UpdateTaskInput on the TaskUpdate builder.
+func (c *TaskUpdate) SetInput(i UpdateTaskInput) *TaskUpdate {
+	i.Mutate(c.Mutation())
+	return c
+}
+
+// SetInput applies the change-set in the UpdateTaskInput on the TaskUpdateOne builder.
+func (c *TaskUpdateOne) SetInput(i UpdateTaskInput) *TaskUpdateOne {
+	i.Mutate(c.Mutation())
+	return c
+}
+
 // CreateUserInput represents a mutation input for creating users.
 type CreateUserInput struct {
 	Name      string
@@ -74,6 +162,46 @@ func (i *CreateUserInput) Mutate(m *UserMutation) {
 
 // SetInput applies the change-set in the CreateUserInput on the UserCreate builder.
 func (c *UserCreate) SetInput(i CreateUserInput) *UserCreate {
+	i.Mutate(c.Mutation())
+	return c
+}
+
+// UpdateUserInput represents a mutation input for updating users.
+type UpdateUserInput struct {
+	Name         *string
+	Email        *string
+	Password     *string
+	ClearProject bool
+	ProjectID    *int
+}
+
+// Mutate applies the UpdateUserInput on the UserMutation builder.
+func (i *UpdateUserInput) Mutate(m *UserMutation) {
+	if v := i.Name; v != nil {
+		m.SetName(*v)
+	}
+	if v := i.Email; v != nil {
+		m.SetEmail(*v)
+	}
+	if v := i.Password; v != nil {
+		m.SetPassword(*v)
+	}
+	if i.ClearProject {
+		m.ClearProject()
+	}
+	if v := i.ProjectID; v != nil {
+		m.SetProjectID(*v)
+	}
+}
+
+// SetInput applies the change-set in the UpdateUserInput on the UserUpdate builder.
+func (c *UserUpdate) SetInput(i UpdateUserInput) *UserUpdate {
+	i.Mutate(c.Mutation())
+	return c
+}
+
+// SetInput applies the change-set in the UpdateUserInput on the UserUpdateOne builder.
+func (c *UserUpdateOne) SetInput(i UpdateUserInput) *UserUpdateOne {
 	i.Mutate(c.Mutation())
 	return c
 }

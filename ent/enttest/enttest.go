@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent"
 	// required by schema hooks.
-	_ "github.com/Shuri-Honda-1101/ent-bag-fragment/ent/runtime"
+	_ "github.com/Shuri-Honda-1101/ent-bug-fragment/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/migrate"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/migrate"
 )
 
 type (

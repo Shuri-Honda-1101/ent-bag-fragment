@@ -8,8 +8,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/project"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/user"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/project"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/user"
 )
 
 // User is the model entity for the User schema.

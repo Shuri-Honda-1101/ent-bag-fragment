@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/schema"
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/project"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/task"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/user"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/project"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/task"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/user"
 	"github.com/hashicorp/go-multierror"
 	"golang.org/x/sync/semaphore"
 )

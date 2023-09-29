@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/errcode"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/project"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/task"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/user"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/project"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/task"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/user"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )
 

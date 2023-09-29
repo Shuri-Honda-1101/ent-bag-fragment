@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: ent_bug_fragment_db
+    image: postgres:alpine
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+    networks:
+      - default

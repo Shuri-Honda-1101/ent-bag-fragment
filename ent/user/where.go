@@ -5,7 +5,7 @@ package user
 import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/predicate"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

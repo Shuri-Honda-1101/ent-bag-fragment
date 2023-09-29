@@ -1,4 +1,4 @@
-package main
+package resolver
 
 // This file will be automatically regenerated based on the schema, any resolver implementations
 // will be copied through when generating and any unknown code will be moved to the end.
@@ -8,7 +8,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/gql"
 )
 
 // Node is the resolver for the node field.
@@ -36,7 +37,7 @@ func (r *queryResolver) Users(ctx context.Context) ([]*ent.User, error) {
 	panic(fmt.Errorf("not implemented: Users - users"))
 }
 
-// Query returns QueryResolver implementation.
-func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
+// Query returns gql.QueryResolver implementation.
+func (r *Resolver) Query() gql.QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }

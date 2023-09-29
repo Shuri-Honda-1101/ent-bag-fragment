@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent"
 )
 
 // The ProjectFunc type is an adapter to allow the use of ordinary

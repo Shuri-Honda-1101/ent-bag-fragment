@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/project"
-	"github.com/Shuri-Honda-1101/ent-bag-fragment/ent/task"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/project"
+	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent/task"
 )
 
 // TaskCreate is the builder for creating a Task entity.
