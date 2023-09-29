@@ -14,12 +14,22 @@ import (
 
 // Node is the resolver for the node field.
 func (r *queryResolver) Node(ctx context.Context, id int) (ent.Noder, error) {
-	panic(fmt.Errorf("not implemented: Node - node"))
+	node, err := r.client.Noder(ctx, id)
+
+	if err != nil {
+		return nil, err
+	}
+	return node, nil
 }
 
 // Nodes is the resolver for the nodes field.
 func (r *queryResolver) Nodes(ctx context.Context, ids []int) ([]ent.Noder, error) {
-	panic(fmt.Errorf("not implemented: Nodes - nodes"))
+	nodes, err := r.client.Noders(ctx, ids)
+
+	if err != nil {
+		return nil, err
+	}
+	return nodes, nil
 }
 
 // Projects is the resolver for the projects field.

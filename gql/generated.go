@@ -51,9 +51,9 @@ type ComplexityRoot struct {
 		CreateProject func(childComplexity int, input ent.CreateProjectInput) int
 		CreateTask    func(childComplexity int, input ent.CreateTaskInput) int
 		CreateUser    func(childComplexity int, input ent.CreateUserInput) int
-		UpdateProject func(childComplexity int, input ent.UpdateProjectInput) int
-		UpdateTask    func(childComplexity int, input ent.UpdateTaskInput) int
-		UpdateUser    func(childComplexity int, input ent.UpdateUserInput) int
+		UpdateProject func(childComplexity int, id *int, input ent.UpdateProjectInput) int
+		UpdateTask    func(childComplexity int, id *int, input ent.UpdateTaskInput) int
+		UpdateUser    func(childComplexity int, id *int, input ent.UpdateUserInput) int
 	}
 
 	PageInfo struct {
@@ -97,11 +97,11 @@ type ComplexityRoot struct {
 
 type MutationResolver interface {
 	CreateTask(ctx context.Context, input ent.CreateTaskInput) (*ent.Task, error)
-	UpdateTask(ctx context.Context, input ent.UpdateTaskInput) (*ent.Task, error)
+	UpdateTask(ctx context.Context, id *int, input ent.UpdateTaskInput) (*ent.Task, error)
 	CreateProject(ctx context.Context, input ent.CreateProjectInput) (*ent.Project, error)
-	UpdateProject(ctx context.Context, input ent.UpdateProjectInput) (*ent.Project, error)
+	UpdateProject(ctx context.Context, id *int, input ent.UpdateProjectInput) (*ent.Project, error)
 	CreateUser(ctx context.Context, input ent.CreateUserInput) (*ent.User, error)
-	UpdateUser(ctx context.Context, input ent.UpdateUserInput) (*ent.User, error)
+	UpdateUser(ctx context.Context, id *int, input ent.UpdateUserInput) (*ent.User, error)
 }
 type QueryResolver interface {
 	Node(ctx context.Context, id int) (ent.Noder, error)
@@ -172,7 +172,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.UpdateProject(childComplexity, args["input"].(ent.UpdateProjectInput)), true
+		return e.complexity.Mutation.UpdateProject(childComplexity, args["id"].(*int), args["input"].(ent.UpdateProjectInput)), true
 
 	case "Mutation.updateTask":
 		if e.complexity.Mutation.UpdateTask == nil {
@@ -184,7 +184,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.UpdateTask(childComplexity, args["input"].(ent.UpdateTaskInput)), true
+		return e.complexity.Mutation.UpdateTask(childComplexity, args["id"].(*int), args["input"].(ent.UpdateTaskInput)), true
 
 	case "Mutation.updateUser":
 		if e.complexity.Mutation.UpdateUser == nil {
@@ -196,7 +196,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.UpdateUser(childComplexity, args["input"].(ent.UpdateUserInput)), true
+		return e.complexity.Mutation.UpdateUser(childComplexity, args["id"].(*int), args["input"].(ent.UpdateUserInput)), true
 
 	case "PageInfo.endCursor":
 		if e.complexity.PageInfo.EndCursor == nil {
@@ -548,45 +548,72 @@ func (ec *executionContext) field_Mutation_createUser_args(ctx context.Context, 
 func (ec *executionContext) field_Mutation_updateProject_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 ent.UpdateProjectInput
-	if tmp, ok := rawArgs["input"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNUpdateProjectInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateProjectInput(ctx, tmp)
+	var arg0 *int
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalOID2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["input"] = arg0
+	args["id"] = arg0
+	var arg1 ent.UpdateProjectInput
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg1, err = ec.unmarshalNUpdateProjectInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateProjectInput(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg1
 	return args, nil
 }
 
 func (ec *executionContext) field_Mutation_updateTask_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 ent.UpdateTaskInput
-	if tmp, ok := rawArgs["input"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNUpdateTaskInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateTaskInput(ctx, tmp)
+	var arg0 *int
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalOID2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["input"] = arg0
+	args["id"] = arg0
+	var arg1 ent.UpdateTaskInput
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg1, err = ec.unmarshalNUpdateTaskInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateTaskInput(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg1
 	return args, nil
 }
 
 func (ec *executionContext) field_Mutation_updateUser_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 ent.UpdateUserInput
-	if tmp, ok := rawArgs["input"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNUpdateUserInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateUserInput(ctx, tmp)
+	var arg0 *int
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalOID2ᚖint(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["input"] = arg0
+	args["id"] = arg0
+	var arg1 ent.UpdateUserInput
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg1, err = ec.unmarshalNUpdateUserInput2githubᚗcomᚋShuriᚑHondaᚑ1101ᚋentᚑbugᚑfragmentᚋentᚐUpdateUserInput(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg1
 	return args, nil
 }
 
@@ -754,7 +781,7 @@ func (ec *executionContext) _Mutation_updateTask(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().UpdateTask(rctx, fc.Args["input"].(ent.UpdateTaskInput))
+		return ec.resolvers.Mutation().UpdateTask(rctx, fc.Args["id"].(*int), fc.Args["input"].(ent.UpdateTaskInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -886,7 +913,7 @@ func (ec *executionContext) _Mutation_updateProject(ctx context.Context, field g
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().UpdateProject(rctx, fc.Args["input"].(ent.UpdateProjectInput))
+		return ec.resolvers.Mutation().UpdateProject(rctx, fc.Args["id"].(*int), fc.Args["input"].(ent.UpdateProjectInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1018,7 +1045,7 @@ func (ec *executionContext) _Mutation_updateUser(ctx context.Context, field grap
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().UpdateUser(rctx, fc.Args["input"].(ent.UpdateUserInput))
+		return ec.resolvers.Mutation().UpdateUser(rctx, fc.Args["id"].(*int), fc.Args["input"].(ent.UpdateUserInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)

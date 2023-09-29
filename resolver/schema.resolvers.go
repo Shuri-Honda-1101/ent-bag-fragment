@@ -6,7 +6,6 @@ package resolver
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/Shuri-Honda-1101/ent-bug-fragment/ent"
 	"github.com/Shuri-Honda-1101/ent-bug-fragment/gql"
@@ -14,32 +13,56 @@ import (
 
 // CreateTask is the resolver for the createTask field.
 func (r *mutationResolver) CreateTask(ctx context.Context, input ent.CreateTaskInput) (*ent.Task, error) {
-	panic(fmt.Errorf("not implemented: CreateTask - createTask"))
+	task, err := r.client.Task.Create().SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return task, nil
 }
 
 // UpdateTask is the resolver for the updateTask field.
-func (r *mutationResolver) UpdateTask(ctx context.Context, input ent.UpdateTaskInput) (*ent.Task, error) {
-	panic(fmt.Errorf("not implemented: UpdateTask - updateTask"))
+func (r *mutationResolver) UpdateTask(ctx context.Context, id *int, input ent.UpdateTaskInput) (*ent.Task, error) {
+	task, err := r.client.Task.UpdateOneID(*id).SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return task, nil
 }
 
 // CreateProject is the resolver for the createProject field.
 func (r *mutationResolver) CreateProject(ctx context.Context, input ent.CreateProjectInput) (*ent.Project, error) {
-	panic(fmt.Errorf("not implemented: CreateProject - createProject"))
+	project, err := r.client.Project.Create().SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return project, nil
 }
 
 // UpdateProject is the resolver for the updateProject field.
-func (r *mutationResolver) UpdateProject(ctx context.Context, input ent.UpdateProjectInput) (*ent.Project, error) {
-	panic(fmt.Errorf("not implemented: UpdateProject - updateProject"))
+func (r *mutationResolver) UpdateProject(ctx context.Context, id *int, input ent.UpdateProjectInput) (*ent.Project, error) {
+	project, err := r.client.Project.UpdateOneID(*id).SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return project, nil
 }
 
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input ent.CreateUserInput) (*ent.User, error) {
-	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+	user, err := r.client.User.Create().SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
 }
 
 // UpdateUser is the resolver for the updateUser field.
-func (r *mutationResolver) UpdateUser(ctx context.Context, input ent.UpdateUserInput) (*ent.User, error) {
-	panic(fmt.Errorf("not implemented: UpdateUser - updateUser"))
+func (r *mutationResolver) UpdateUser(ctx context.Context, id *int, input ent.UpdateUserInput) (*ent.User, error) {
+	user, err := r.client.User.UpdateOneID(*id).SetInput(input).Save(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
 }
 
 // Mutation returns gql.MutationResolver implementation.
