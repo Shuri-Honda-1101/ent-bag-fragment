@@ -17,7 +17,7 @@ import (
 
 func main() {
 	// Create ent.Client and run the schema migration.
-	client, err := ent.Open(dialect.Postgres, "host=localhost port=5434 user=user dbname=db password=password sslmode=disable")
+	client, err := ent.Open(dialect.Postgres, "host=localhost port=5434 user=user dbname=db password=password sslmode=disable", ent.Debug())
 	if err != nil {
 		log.Fatal("opening ent client", err)
 	}
